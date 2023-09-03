@@ -1,6 +1,8 @@
 package com.dicoding.ilhamsubmission
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,6 +22,7 @@ class MainActivity : AppCompatActivity() {
         showRecyclerList()
     }
 
+    @SuppressLint("Recycle")
     private fun getListGames(): ArrayList<Game> {
         val dataName = resources.getStringArray(R.array.data_game)
         val dataDesc = resources.getStringArray(R.array.data_desc)
@@ -36,5 +39,16 @@ class MainActivity : AppCompatActivity() {
         rvGames.layoutManager = LinearLayoutManager(this)
         val listGameAdapter = ListGameAdapter(list)
         rvGames.adapter = listGameAdapter
+
+        listGameAdapter.setOnItemClickCallback(object : ListGameAdapter.OnItemClickCallback {
+            override fun onItemClicked(data: Game) {
+                showSelectedGame(data)
+            }
+        })
     }
+
+    private fun showSelectedGame(game: Game) {
+        Toast.makeText(this, "Kamu memilih " + game.name, Toast.LENGTH_SHORT).show()
+    }
+
 }
