@@ -1,8 +1,10 @@
 <resources>
-    <string name="app_name">Top 10 Games</string>
+    <string name="app_name" translatable="false">Top 10 Games</string>
 
-    <string name="games_name">Nama Game</string>
-    <string name="description">Deskripsi</string>
+    <string name="games_name" translatable="false">Nama Game</string>
+    <string name="description" translatable="false">Deskripsi</string>
+    <string name="judul">Judul</string>
+    <string name="deskripsi">Deskripsi</string>
 
     <string-array name="data_game">
         <item>Hogwarts Legacy</item>

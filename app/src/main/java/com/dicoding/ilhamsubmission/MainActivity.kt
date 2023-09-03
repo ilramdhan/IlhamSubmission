@@ -1,9 +1,12 @@
 package com.dicoding.ilhamsubmission
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var rvGames: RecyclerView
@@ -20,6 +23,7 @@ class MainActivity : AppCompatActivity() {
         showRecyclerList()
     }
 
+    @SuppressLint("Recycle")
     private fun getListGames(): ArrayList<Game> {
         val dataName = resources.getStringArray(R.array.data_game)
         val dataDesc = resources.getStringArray(R.array.data_desc)
@@ -36,5 +40,15 @@ class MainActivity : AppCompatActivity() {
         rvGames.layoutManager = LinearLayoutManager(this)
         val listGameAdapter = ListGameAdapter(list)
         rvGames.adapter = listGameAdapter
+
+        listGameAdapter.setOnItemClickCallback(object : ListGameAdapter.OnItemClickCallback {
+            override fun onItemClicked(data: Game) {
+                val intent = Intent(this@MainActivity, DetailGameActivity::class.java)
+                intent.putExtra("key_game", data)
+                startActivity(intent)
+            }
+        })
+
     }
+
 }
